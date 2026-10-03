@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://spaceanvilstudio-hub.github.io/sitemap.xml
