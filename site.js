@@ -21,7 +21,7 @@ const draft='<div class="notice">'+L.draft+'</div>';
 const sections=(arr)=>arr.map(s=>'<h2>'+s[0]+'</h2><p>'+s[1]+'</p>').join("");
 let html="";
 if(page==="home"){
-html='<section class="hero"><div class="eyebrow">CALCFORGE · SPACEANVIL STUDIO</div><h1>'+L.hero+'</h1><p>'+L.lead+'</p><a class="btn" href="'+langUrl(lang)+'privacy/">'+L.nav[0]+'</a><a class="btn alt" href="'+langUrl(lang)+'support/">'+L.nav[3]+'</a></section><section class="grid">'+L.cards.map((c,i)=>'<a class="card" href="'+sectionUrl(lang,['privacy','terms','delete','support'][i])+'"><h2>'+c+'</h2><p>'+L.desc[i]+'</p></a>').join("")+'</section>';
+html='<section class="hero"><div class="eyebrow">CALCFORGE · SPACEANVIL STUDIO</div><h1>'+L.hero+'</h1><p>'+L.lead+'</p><a class="btn" href="'+sectionUrl(lang,"privacy")">'+L.nav[0]+'</a><a class="btn alt" href="'+sectionUrl(lang,"support")">'+L.nav[3]+'</a></section><section class="grid">'+L.cards.map((c,i)=>'<a class="card" href="'+sectionUrl(lang,['privacy','terms','delete','support'][i])+'"><h2>'+c+'</h2><p>'+L.desc[i]+'</p></a>').join("")+'</section>';
 }else if(page==="privacy"){
 html='<article class="doc"><div class="eyebrow">CALCFORGE</div><h1>'+L.privacy+'</h1><p class="muted">'+L.effective+'</p>'+draft+sections(L.privacySections)+'<p>'+L.contact+'</p></article>';
 }else if(page==="terms"){
@@ -38,4 +38,4 @@ const subject=encodeURIComponent("CalcForge account deletion request");
 html='<article class="doc"><div class="eyebrow">CALCFORGE</div><h1>'+L.delete+'</h1>'+draft+'<h2>1. '+(lang==="ka"?"მოთხოვნის გაგზავნა":lang==="ru"?"Отправка запроса":"Submit a request")+'</h2><p>'+details[0]+'</p><a class="btn" href="mailto:'+email+'?subject='+subject+'">'+(lang==="ka"?"ელფოსტის გახსნა":lang==="ru"?"Написать письмо":"Email deletion request")+'</a><h2>2. '+(lang==="ka"?"რა ინფორმაციაა საჭირო":lang==="ru"?"Какие сведения нужны":"Information required")+'</h2><p>'+details[1]+'</p><h2>3. '+(lang==="ka"?"შემდეგი ნაბიჯები":lang==="ru"?"Что дальше":"What happens next")+'</h2><p>'+details[2]+'</p><h2>4. '+(lang==="ka"?"რა იშლება":lang==="ru"?"Что удаляется":"What is deleted")+'</h2><p>'+details[3]+'</p><h2>5. '+(lang==="ka"?"აპიდან წაშლა":lang==="ru"?"Удаление в приложении":"In-app deletion")+'</h2><p>'+details[4]+'</p></article>';
 }
 document.getElementById("content").innerHTML=html;
-document.getElementById("footer").innerHTML='<span>CalcForge · SpaceAnvil Studio</span><span><a href="'+langUrl(lang)+'privacy/">'+L.nav[0]+'</a> · <a href="'+langUrl(lang)+'terms/">'+L.nav[1]+'</a> · <a href="'+langUrl(lang)+'account-deletion/">'+L.nav[2]+'</a> · <a href="mailto:'+email+'">'+email+'</a></span>';
+document.getElementById("footer").innerHTML='<span>CalcForge · SpaceAnvil Studio</span><span><a href="'+sectionUrl(lang,"privacy")">'+L.nav[0]+'</a> · <a href="'+sectionUrl(lang,"terms")">'+L.nav[1]+'</a> · <a href="'+sectionUrl(lang,"delete")">'+L.nav[2]+'</a> · <a href="mailto:'+email+'">'+email+'</a></span>';
