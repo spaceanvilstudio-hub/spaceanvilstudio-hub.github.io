@@ -21,7 +21,7 @@ const draft='<div class="notice">'+L.draft+'</div>';
 const sections=(arr)=>arr.map(s=>'<h2>'+s[0]+'</h2><p>'+s[1]+'</p>').join("");
 let html="";
 if(page==="home"){
-html='<section class="hero"><div class="eyebrow">CALCFORGE · SPACEANVIL STUDIO</div><h1>'+L.hero+'</h1><p>'+L.lead+'</p><a class="btn" href="'+langUrl(lang)+'privacy/">'+L.nav[0]+'</a><a class="btn alt" href="'+langUrl(lang)+'support/">'+L.nav[3]+'</a></section><section class="grid">'+L.cards.map((c,i)=>'<a class="card" href="'+langUrl(lang)+['privacy/','terms/','account-deletion/','support/'][i]+'"><h2>'+c+'</h2><p>'+L.desc[i]+'</p></a>').join("")+'</section>';
+html='<section class="hero"><div class="eyebrow">CALCFORGE · SPACEANVIL STUDIO</div><h1>'+L.hero+'</h1><p>'+L.lead+'</p><a class="btn" href="'+langUrl(lang)+'privacy/">'+L.nav[0]+'</a><a class="btn alt" href="'+langUrl(lang)+'support/">'+L.nav[3]+'</a></section><section class="grid">'+L.cards.map((c,i)=>'<a class="card" href="'+sectionUrl(lang,['privacy','terms','delete','support'][i])+'"><h2>'+c+'</h2><p>'+L.desc[i]+'</p></a>').join("")+'</section>';
 }else if(page==="privacy"){
 html='<article class="doc"><div class="eyebrow">CALCFORGE</div><h1>'+L.privacy+'</h1><p class="muted">'+L.effective+'</p>'+draft+sections(L.privacySections)+'<p>'+L.contact+'</p></article>';
 }else if(page==="terms"){
