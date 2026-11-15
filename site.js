@@ -10,10 +10,10 @@ const pathMap={home:"",privacy:"privacy/",terms:"terms/","delete":"account-delet
 const page=location.pathname.includes("privacy")?"privacy":location.pathname.includes("terms")?"terms":location.pathname.includes("account-deletion")?"delete":location.pathname.includes("support")?"support":"home";
 const lang=new URLSearchParams(location.search).get("lang")||localStorage.getItem("cf-lang")||"en";
 const L=T[lang]||T.en;const root=location.pathname.startsWith("/ka/")?"../":location.pathname.startsWith("/ru/")?"../":"./";
-const langUrl=(l)=>{const base=page==="home"?"":pathMap[page];return (l==="en"?"/":"/"+l+"/")+base};
+const homeUrl=(l)=>(l==="en"?"/":"/"+l+"/");const sectionUrl=(l,k)=>homeUrl(l)+pathMap[k];const langUrl=(l)=>sectionUrl(l,page);
 document.documentElement.lang=lang;
-document.getElementById("brand").href=langUrl(lang);
-document.getElementById("nav").innerHTML=L.nav.map((v,i)=>'<a href="'+langUrl(lang)+['privacy/','terms/','account-deletion/','support/'][i]+'">'+v+'</a>').join("");
+document.getElementById("brand").href=homeUrl(lang);
+document.getElementById("nav").innerHTML=L.nav.map((v,i)=>'<a href="'+sectionUrl(lang,['privacy','terms','delete','support'][i])+'">'+v+'</a>').join("");
 document.getElementById("langs").innerHTML=["en","ka","ru"].map(l=>'<button type="button" class="'+(l===lang?"active":"")+'" data-lang="'+l+'">'+l.toUpperCase()+'</button>').join("");
 document.querySelectorAll("[data-lang]").forEach(b=>b.onclick=()=>{localStorage.setItem("cf-lang",b.dataset.lang);location.href=langUrl(b.dataset.lang)});
 const email="spaceanvil.studio@gmail.com";
