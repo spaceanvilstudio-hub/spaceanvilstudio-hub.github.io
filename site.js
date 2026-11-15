@@ -10,7 +10,7 @@ const pathMap={home:"",privacy:"privacy/",terms:"terms/","delete":"account-delet
 const page=location.pathname.includes("privacy")?"privacy":location.pathname.includes("terms")?"terms":location.pathname.includes("account-deletion")?"delete":location.pathname.includes("support")?"support":"home";
 const lang=new URLSearchParams(location.search).get("lang")||localStorage.getItem("cf-lang")||"en";
 const L=T[lang]||T.en;const root=location.pathname.startsWith("/ka/")?"../":location.pathname.startsWith("/ru/")?"../":"./";
-const homeUrl=(l)=>(l==="en"?"/":"/"+l+"/");const sectionUrl=(l,k)=>homeUrl(l)+pathMap[k];const langUrl=(l)=>sectionUrl(l,page);
+const homeUrl=(l)=>"/"+(l==="en"?"":"?lang="+l);const sectionUrl=(l,k)=>"/"+pathMap[k]+(l==="en"?"":"?lang="+l);const langUrl=(l)=>location.pathname+(l==="en"?"":"?lang="+l);
 document.documentElement.lang=lang;
 document.getElementById("brand").href=homeUrl(lang);
 document.getElementById("nav").innerHTML=L.nav.map((v,i)=>'<a href="'+sectionUrl(lang,['privacy','terms','delete','support'][i])+'">'+v+'</a>').join("");
